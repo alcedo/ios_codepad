@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITextFieldDelegate {
 
     var textField: UITextField?
     var label: UILabel?
+    var notifCenter: NSNotificationCenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,40 @@ class MainViewController: UIViewController {
         self.textField = UITextField(frame: CGRectMake(CGFloat(10), CGFloat(30),
             CGFloat(300), CGFloat(130.3123123)))
         self.textField?.borderStyle = UITextBorderStyle.RoundedRect
+        self.textField?.delegate = self
         
         self.view.addSubview(self.textField!)
-
+        self.notifCenter = NSNotificationCenter.defaultCenter()
+        
+        self.notifCenter!.addObserver(self,
+            selector: "textFieldDidChange:",
+            name: UITextFieldTextDidChangeNotification,
+            object: self.textField)
+        
+        self.label = UILabel(frame: CGRectMake(0, 0, 100, 20))
+        self.label?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin |
+                                       UIViewAutoresizing.FlexibleLeftMargin
+        
+        self.label?.text = "Labe Text Goes Here"
+        self.label?.sizeToFit()
+        self.view.addSubview(self.label!)
+        
         // Do any additional setup after loading the view.
     }
+    
+    func textFieldDidChange(notif: NSNotification) {
+        self.label?.text = self.textField?.text
+    }
 
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        //this tells the operating system to remove
+        //the keyboard from the forefront
+        textField.resignFirstResponder()
+        //returns NO. Instead of adding a line break,
+        //the text field resigns
+        return false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
