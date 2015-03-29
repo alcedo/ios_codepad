@@ -31,20 +31,20 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(self.textField!)
         self.notifCenter = NSNotificationCenter.defaultCenter()
         
-        self.notifCenter!.addObserver(self,
-            selector: "textFieldDidChange:",
-            name: UITextFieldTextDidChangeNotification,
-            object: self.textField)
-        
         self.label = UILabel(frame: CGRectMake(0, 0, 100, 20))
         self.label?.autoresizingMask = UIViewAutoresizing.FlexibleTopMargin |
                                        UIViewAutoresizing.FlexibleLeftMargin
         
-        self.label?.text = "Labe Text Goes Here"
+        self.label?.text = "Label Text Goes Here"
         self.label?.sizeToFit()
         self.view.addSubview(self.label!)
         
-        // Do any additional setup after loading the view.
+        // https://bhaveshdhaduk.wordpress.com/2013/04/09/ios-uitextview-character-counter/
+        // update label when textfield changes
+        self.notifCenter!.addObserver(self,
+            selector: "textFieldDidChange:",
+            name: UITextFieldTextDidChangeNotification,
+            object: self.textField)
     }
     
     func textFieldDidChange(notif: NSNotification) {
