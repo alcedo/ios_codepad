@@ -10,8 +10,23 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    var textField: UITextField?
+    var label: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*
+        this creates the text field and sets the frame
+        “CGRectMake” creates the frame with (x,y,width,height)
+        where x and y are are pixel distances from the top left
+        of the screen
+        */
+        self.textField = UITextField(frame: CGRectMake(CGFloat(10), CGFloat(30),
+            CGFloat(300), CGFloat(130.3123123)))
+        self.textField?.borderStyle = UITextBorderStyle.RoundedRect
+        
+        self.view.addSubview(self.textField!)
 
         // Do any additional setup after loading the view.
     }
