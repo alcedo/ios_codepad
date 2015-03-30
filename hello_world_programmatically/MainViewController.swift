@@ -47,6 +47,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             object: self.textField)
     }
     
+//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+//        self.label?.text = textField.text
+//        return true
+//    }
+    
     func textFieldDidChange(notif: NSNotification) {
         self.label?.text = self.textField?.text
     }
