@@ -17,8 +17,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Main View Controller"
         
-       
+        
         /*
         this creates the text field and sets the frame
         “CGRectMake” creates the frame with (x,y,width,height)

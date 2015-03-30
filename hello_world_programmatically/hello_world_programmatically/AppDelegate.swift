@@ -18,9 +18,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.backgroundColor = UIColor.whiteColor()
+        
         let mvc = MainViewController()
-        self.window?.rootViewController = mvc
+        mvc.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 1)
+        let mvcNavController = UINavigationController(rootViewController: mvc)
+        
+        let mvc2 = MainViewController()
+        mvc2.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.MostRecent, tag: 2)
+        
+        let tvc = TestViewController()
+        tvc.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 3)
+        
+        // https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITabBarController_Class/
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [mvcNavController, mvc2, tvc]
+        tabBarController.selectedViewController = mvcNavController
+        
+
+        self.window?.rootViewController = tabBarController
+        
         self.window?.makeKeyAndVisible()
+        
         return true
     }
 
