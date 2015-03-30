@@ -25,7 +25,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         where x and y are are pixel distances from the top left
         of the screen
         */
-        self.textField = UITextField(frame: CGRectMake(CGFloat(10), CGFloat(30),
+        self.textField = UITextField(frame: CGRectMake(CGFloat(0), CGFloat(0),
             CGFloat(300), CGFloat(130.3123123)))
         self.textField?.borderStyle = UITextBorderStyle.RoundedRect
         self.textField?.delegate = self
@@ -54,12 +54,21 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     
     func makeAutoLayout() {
-        let padding = UIEdgeInsetsMake(400, 20, 20, 20)
+        let padding = UIEdgeInsetsMake(20, 0, 20, 20)
         self.label?.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view.snp_left).with.offset(10)
-            make.top.equalTo(self.view.snp_top).with.offset(20)
+            make.top.equalTo(self.view.snp_top).with.offset(padding)
             return
         }
+        self.textField?.snp_makeConstraints{ (make) -> Void in
+            make.top.greaterThanOrEqualTo(self.label!.snp_bottom).with.offset(0)
+            make.width.equalTo(200)
+            return
+        }
+        
+//        self.view.snp_makeConstraints { (make) -> Void in
+//            make.top.equalTo(self.view.snp_top).with.offset(230)
+//            return
+//        }
   
     }
     
