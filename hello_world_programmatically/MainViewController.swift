@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Snap
 
 class MainViewController: UIViewController, UITextFieldDelegate {
 
@@ -17,6 +18,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
         /*
         this creates the text field and sets the frame
         “CGRectMake” creates the frame with (x,y,width,height)
@@ -45,8 +47,23 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             selector: "textFieldDidChange:",
             name: UITextFieldTextDidChangeNotification,
             object: self.textField)
+        
+        
+        self.makeAutoLayout()
     }
     
+    
+    func makeAutoLayout() {
+        let padding = UIEdgeInsetsMake(400, 20, 20, 20)
+        self.label?.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(self.view.snp_left).with.offset(10)
+            make.top.equalTo(self.view.snp_top).with.offset(20)
+            return
+        }
+  
+    }
+    
+// Delegate pattern for UIText field
 //    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
 //        self.label?.text = textField.text
 //        return true
