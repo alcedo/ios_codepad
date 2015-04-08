@@ -113,8 +113,8 @@ class SampleTableViewController: UITableViewController, UITableViewDelegate {
     // MARK: TableView Delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(indexPath)
         let mvc = MainViewController()
+        mvc.view.backgroundColor = UIColor.whiteColor()
         self.navigationController?.pushViewController(mvc, animated: true)
     }
 
