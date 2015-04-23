@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C64E1B51AE8D0E20022FA2A /* TestAccessControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C64E1B41AE8D0E20022FA2A /* TestAccessControl.swift */; };
 		1C9A71921AC944F40023BD66 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9A71911AC944F40023BD66 /* TestViewController.swift */; };
 		1CA890E21ACBDECA004DC26D /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA890E11ACBDECA004DC26D /* SampleTableViewController.swift */; };
 		1CD924FC1AC8875C00C1A093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD924FB1AC8875C00C1A093 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C64E1B41AE8D0E20022FA2A /* TestAccessControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAccessControl.swift; sourceTree = "<group>"; };
 		1C9A71901AC93F520023BD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Base; path = Base.lproj/MainTabBarController.swift; sourceTree = "<group>"; };
 		1C9A71911AC944F40023BD66 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1CA890E11ACBDECA004DC26D /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				1CD924FD1AC8875C00C1A093 /* ViewController.swift */,
 				1CD925021AC8875C00C1A093 /* Images.xcassets */,
 				1CD925041AC8875C00C1A093 /* LaunchScreen.xib */,
+				1C64E1B41AE8D0E20022FA2A /* TestAccessControl.swift */,
 				1CD924F91AC8875C00C1A093 /* Supporting Files */,
 			);
 			path = hello_world_programmatically;
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CA890E21ACBDECA004DC26D /* SampleTableViewController.swift in Sources */,
+				1C64E1B51AE8D0E20022FA2A /* TestAccessControl.swift in Sources */,
 				1CD9251C1AC8879500C1A093 /* MainViewController.swift in Sources */,
 				1CD924FE1AC8875C00C1A093 /* ViewController.swift in Sources */,
 				1C9A71921AC944F40023BD66 /* TestViewController.swift in Sources */,

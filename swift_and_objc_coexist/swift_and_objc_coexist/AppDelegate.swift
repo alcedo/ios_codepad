@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  hello_world_programmatically
+//  swift_and_objc_coexist
 //
-//  Created by Victor Liew on 3/29/15.
-//  Copyright (c) 2015 Victor Liew. All rights reserved.
+//  Created by Victor Liew on 4/23/15.
+//  Copyright (c) 2015 alcedo. All rights reserved.
 //
 
 import UIKit
@@ -16,40 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.backgroundColor = UIColor.whiteColor()
-        
-        let mvc = MainViewController()
-        mvc.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 1)
-        let mvcNavController = UINavigationController(rootViewController: mvc)
-        
-        let tableView = SampleTableViewController()
-        tableView.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.MostRecent, tag: 2)
-        let tableViewNavController = UINavigationController(rootViewController: tableView)
-        
-        let tvc = TestViewController()
-        tvc.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 3)
-        
-        // https://developer.apple.com/library/ios/documentation/UIKit/Reference/UITabBarController_Class/
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [mvcNavController, tableViewNavController, tvc]
-        tabBarController.selectedViewController = mvcNavController
-        
-
-        self.window?.rootViewController = tabBarController
-        
-        self.window?.makeKeyAndVisible()
-        
-        self.addRandomTestsHere()
-        
+        let c = Car()
+        c.drive()
         return true
-    }
-    
-    // Mostly used to test out swift language
-    func addRandomTestsHere() {
-        let tester = AccessControlTester()
-        tester.internalMethod()
-        
     }
 
     func applicationWillResignActive(application: UIApplication) {
