@@ -9,6 +9,8 @@ platform :ios, '8.0'
 use_frameworks!
 pod 'Alamofire', '~> 1.1.5'
 
+pod 'Snap', '~> 0.9.1'
+
 end
 
 target 'codepath_wk1e1Tests' do

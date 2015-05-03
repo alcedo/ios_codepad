@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C307E901AF604D20092E52B /* InstagramModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C307E8F1AF604D20092E52B /* InstagramModel.swift */; };
 		1C6A8C0C1AF5F80F004B4BE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A8C0B1AF5F80F004B4BE8 /* AppDelegate.swift */; };
 		1C6A8C0E1AF5F80F004B4BE8 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A8C0D1AF5F80F004B4BE8 /* PhotosViewController.swift */; };
 		1C6A8C111AF5F80F004B4BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C6A8C0F1AF5F80F004B4BE8 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C307E8F1AF604D20092E52B /* InstagramModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramModel.swift; sourceTree = "<group>"; };
 		1C6A8C061AF5F80F004B4BE8 /* codepath_wk1e1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codepath_wk1e1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6A8C0A1AF5F80F004B4BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C6A8C0B1AF5F80F004B4BE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				1C6A8C0B1AF5F80F004B4BE8 /* AppDelegate.swift */,
 				1C6A8C0D1AF5F80F004B4BE8 /* PhotosViewController.swift */,
+				1C307E8F1AF604D20092E52B /* InstagramModel.swift */,
 				1C6A8C0F1AF5F80F004B4BE8 /* Main.storyboard */,
 				1C6A8C121AF5F80F004B4BE8 /* Images.xcassets */,
 				1C6A8C141AF5F80F004B4BE8 /* LaunchScreen.xib */,
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C6A8C0E1AF5F80F004B4BE8 /* PhotosViewController.swift in Sources */,
+				1C307E901AF604D20092E52B /* InstagramModel.swift in Sources */,
 				1C6A8C0C1AF5F80F004B4BE8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
