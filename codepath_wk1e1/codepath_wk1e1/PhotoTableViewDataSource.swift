@@ -23,6 +23,8 @@ class PhotoTableViewDataSource: NSObject, UITableViewDataSource {
         
     }
     
+    // Data Source HELPERS
+    //////////////////////////////////////////////////////////////////////////////
     func getUserNameForSectionAtIndexPath(index: Int) -> String {
         if let media = self.mediaArray {
             return self.mediaArray!["data"][index]["user"]["username"].stringValue
@@ -30,6 +32,31 @@ class PhotoTableViewDataSource: NSObject, UITableViewDataSource {
             return "Loading..."
         }
     }
+    
+    
+    func getUIImageViewForSectionAtIndex(index: Int) -> UIImageView? {
+        
+        if let media = self.mediaArray {
+            let urlString = media["data"][index]["images"]["standard_resolution"]["url"].stringValue
+            let url = NSURL(string: urlString)
+            
+            if let data = NSData(contentsOfURL: url!) {
+                return UIImageView(image: UIImage(data: data))
+            }
+        }else {
+            // Show default loading image
+            let url = NSURL(string: "http://www.apple.com/euro/ios/ios8/a/generic/images/og.png")
+            if let data = NSData(contentsOfURL: url!) {
+                return UIImageView(image: UIImage(data: data))
+            }
+        }
+        
+        return nil
+    }
+    
+    
+    // Table View Data Source
+    //////////////////////////////////////////////////////////////////////////////////
     
     // MARK: - TableView data source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,21 +78,10 @@ class PhotoTableViewDataSource: NSObject, UITableViewDataSource {
         if (cell == nil) {
             cell = PhotoTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         }
-        
-        // Build Image Holder
-        var url: NSURL?
-        if let media = self.mediaArray {
-            let urlString = media["data"][indexPath.section]["images"]["standard_resolution"]["url"].stringValue
-            url = NSURL(string: urlString)
-        }else {
-            url = NSURL(string: "http://www.apple.com/euro/ios/ios8/a/generic/images/og.png")
-        }
-        
-        if let data = NSData(contentsOfURL: url!) {
-            let imageHolder = UIImageView(image: UIImage(data: data))
+
+        if let imageHolder = self.getUIImageViewForSectionAtIndex(indexPath.section) {
             imageHolder.contentMode = UIViewContentMode.ScaleAspectFit
             cell!.contentView.addSubview(imageHolder)
-            
             imageHolder.snp_makeConstraints{ (make) -> Void in
                 make.height.equalTo(300)
                 make.top.equalTo(cell!.contentView.snp_top).offset(50)

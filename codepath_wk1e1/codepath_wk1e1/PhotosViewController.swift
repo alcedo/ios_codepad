@@ -65,15 +65,24 @@ class PhotosViewController: UIViewController, UITableViewDelegate {
         return label
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let image = self.photoDataSource!.getUIImageViewForSectionAtIndex(indexPath.section)
+        let vc = PhotoDetailViewController(initWithUIImageView: image!)
+        vc.view.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.pushViewController(vc, animated: true)
+        // remove gray shading upon selection
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     // MARK: - Constraints
     func setupConstrain() {
         
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.photoDataSource?.doLoad(self.tableView!)
+        self.title = "Instagram Most Popular"
         
         // Do any additional setup after loading the view, typically from a nib.
     }
