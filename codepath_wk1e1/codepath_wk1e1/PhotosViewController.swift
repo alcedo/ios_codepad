@@ -78,11 +78,20 @@ class PhotosViewController: UIViewController, UITableViewDelegate {
     func setupConstrain() {
         
     }
+    
+    func userDidRefreshTableView(refresh: UIRefreshControl) {
+        self.photoDataSource?.doLoad(self.tableView!)
+        refresh.endRefreshing()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.photoDataSource?.doLoad(self.tableView!)
         self.title = "Instagram Most Popular"
+        self.photoDataSource?.doLoad(self.tableView!)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "userDidRefreshTableView:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.tableView!.addSubview(refreshControl)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
