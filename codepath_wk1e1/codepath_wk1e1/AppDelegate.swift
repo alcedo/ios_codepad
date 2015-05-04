@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let photoViewController = PhotosViewController()
+        let test = "ha"
+        let photoViewController = PhotosViewController(initWithDataSource: PhotoTableViewDataSource())
         let navController = UINavigationController(rootViewController: photoViewController)
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()

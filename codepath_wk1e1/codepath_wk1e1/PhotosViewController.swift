@@ -11,11 +11,19 @@ import Snap
 import SwiftyJSON
 
 //http://stackoverflow.com/questions/5714528/difference-between-uitableviewdelegate-and-uitableviewdatasource
-class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PhotosViewController: UIViewController, UITableViewDelegate {
 
-    let instagram = InstagramModel()
-    var mediaArray: JSON?
     var tableView: UITableView?
+    var photoDataSource: PhotoTableViewDataSource?
+    
+    init(initWithDataSource dataSource: PhotoTableViewDataSource) {
+        super.init(nibName: nil, bundle: nil);
+        self.photoDataSource = dataSource
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -37,9 +45,24 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
             }
             
             tv.autoresizesSubviews = true
-            tv.dataSource = self;
+            tv.dataSource = self.photoDataSource;
             tv.delegate = self;
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 400.00
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(frame: CGRectMake(0, 0, 100, 20))
+        label.text = self.photoDataSource!.getUserNameForSectionAtIndexPath(section)
+        label.backgroundColor = UIColor.grayColor()
+        return label
     }
     
     // MARK: - Constraints
@@ -47,36 +70,10 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    // MARK: - TableView data source 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 300.00
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellIdentifier = "instagram_photo_cell_identifier"
-        var cell = self.tableView?.dequeueReusableCellWithIdentifier(cellIdentifier) as PhotoTableViewCell?
-        
-        if(cell == nil) {
-            cell = PhotoTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
-        }
-        return cell!;
-    }
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        instagram.getPopular({ data in
-            self.mediaArray = JSON(data!)
-        })
+        self.photoDataSource?.doLoad(self.tableView!)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
