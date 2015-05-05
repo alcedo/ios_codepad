@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let manager = AFHTTPRequestOperationManager()
+        manager.GET("http://httpbin.org/get", parameters: nil, success: {(operation, responseObject) -> Void in
+            println(responseObject)
+            println("success")
+        }, failure: nil)
+        
         return true
     }
 
