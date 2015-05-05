@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1C6A8BDE1AF5F15D004B4BE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A8BDD1AF5F15D004B4BE8 /* AppDelegate.swift */; };
-		1C6A8BE01AF5F15D004B4BE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A8BDF1AF5F15D004B4BE8 /* ViewController.swift */; };
+		1C6A8BE01AF5F15D004B4BE8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A8BDF1AF5F15D004B4BE8 /* MainViewController.swift */; };
 		1C6A8BE51AF5F15D004B4BE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C6A8BE41AF5F15D004B4BE8 /* Images.xcassets */; };
 		1C6A8BE81AF5F15D004B4BE8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C6A8BE61AF5F15D004B4BE8 /* LaunchScreen.xib */; };
 		1C6A8BF41AF5F15D004B4BE8 /* codepath_wk1a1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6A8BF31AF5F15D004B4BE8 /* codepath_wk1a1Tests.swift */; };
+		1CB9AD511AF8C2A400520247 /* RTmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB9AD501AF8C2A400520247 /* RTmodel.swift */; };
 		81975C2C6428EF11B10599C7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFCAF9F706869F0D2CFBBB71 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -29,13 +30,14 @@
 		1C6A8BD81AF5F15D004B4BE8 /* codepath_wk1a1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = codepath_wk1a1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6A8BDC1AF5F15D004B4BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C6A8BDD1AF5F15D004B4BE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C6A8BDF1AF5F15D004B4BE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C6A8BDF1AF5F15D004B4BE8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1C6A8BE41AF5F15D004B4BE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1C6A8BE71AF5F15D004B4BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1C6A8BED1AF5F15D004B4BE8 /* codepath_wk1a1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = codepath_wk1a1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C6A8BF21AF5F15D004B4BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C6A8BF31AF5F15D004B4BE8 /* codepath_wk1a1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codepath_wk1a1Tests.swift; sourceTree = "<group>"; };
 		1CB9AD4F1AF8B35100520247 /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bridge.h; path = ../Bridge.h; sourceTree = "<group>"; };
+		1CB9AD501AF8C2A400520247 /* RTmodel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTmodel.swift; sourceTree = "<group>"; };
 		7230F1F7AEA005D1874D1E2D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9FFFF6FA5CA3E1DCE7C959F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EFCAF9F706869F0D2CFBBB71 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +87,8 @@
 			children = (
 				1C6A8BDD1AF5F15D004B4BE8 /* AppDelegate.swift */,
 				1CB9AD4F1AF8B35100520247 /* Bridge.h */,
-				1C6A8BDF1AF5F15D004B4BE8 /* ViewController.swift */,
+				1C6A8BDF1AF5F15D004B4BE8 /* MainViewController.swift */,
+				1CB9AD501AF8C2A400520247 /* RTmodel.swift */,
 				1C6A8BE41AF5F15D004B4BE8 /* Images.xcassets */,
 				1C6A8BE61AF5F15D004B4BE8 /* LaunchScreen.xib */,
 				1C6A8BDB1AF5F15D004B4BE8 /* Supporting Files */,
@@ -269,8 +272,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C6A8BE01AF5F15D004B4BE8 /* ViewController.swift in Sources */,
+				1C6A8BE01AF5F15D004B4BE8 /* MainViewController.swift in Sources */,
 				1C6A8BDE1AF5F15D004B4BE8 /* AppDelegate.swift in Sources */,
+				1CB9AD511AF8C2A400520247 /* RTmodel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
