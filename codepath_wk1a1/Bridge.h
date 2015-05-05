@@ -10,5 +10,7 @@
 #define codepath_wk1a1_Header_h
 
 #import <AFNetworking/AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
+
 
 #endif
