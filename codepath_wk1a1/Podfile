@@ -4,3 +4,5 @@ pod 'AFNetworking'
 
 use_frameworks!
 pod 'Snap'
+
+pod 'SVProgressHUD'
