@@ -57,12 +57,21 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "rt_cell")
-        let data = NSData(contentsOfURL: self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row))
-        cell.imageView?.image = UIImage(data: data!)
-        cell.textLabel?.text = self.boxOfficeModel.getBoxOfficeMovieTitleForIndex(indexPath.row)
-        cell.detailTextLabel?.text = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
-        return cell
+        let cellIdentifier = "photo_cell_identifier"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as UITableViewCell?
+        if (cell == nil) {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
+        }
+        
+        if let cell = cell {
+            let data = NSData(contentsOfURL: self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row))
+            cell.imageView?.image = UIImage(data: data!)
+            cell.textLabel?.text = self.boxOfficeModel.getBoxOfficeMovieTitleForIndex(indexPath.row)
+            cell.detailTextLabel?.text = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
+            return cell
+        }
+        
+        return UITableViewCell() // return empty cell if all else fails
     }
 
 }
