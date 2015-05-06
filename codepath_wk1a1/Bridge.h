@@ -10,7 +10,11 @@
 #define codepath_wk1a1_Header_h
 
 #import <AFNetworking/AFNetworking.h>
-#import "UIImageView+AFNetworking.h"
+
+#import <AFNetworking/UIImageView+AFNetworking.h>
+// Below line not needed due to pod file platform version changed from 7.0 to 8.0. uncomment below
+// when needed again.
+//#import "UIImageView+AFNetworking.h"
 
 
 #endif
