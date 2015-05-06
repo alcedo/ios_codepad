@@ -8,6 +8,7 @@
 
 import UIKit
 import Snap
+import SVProgressHUD
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -16,13 +17,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Show loading spinner
+        SVProgressHUD.show()
+        
         self.title = "Rotten Tomatoes"
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.boxOfficeModel.getBoxOffice({ (data) -> Void in
+            SVProgressHUD.dismiss()
             self.tableView!.reloadData()
         })
-        
         
         self.setupView()
     }
