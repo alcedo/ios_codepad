@@ -18,9 +18,7 @@ class MainViewController: UIViewController {
         RTmodel().getBoxOffice({ (data) -> Void in
             let jsonData = data as? NSDictionary
             let title = jsonData!["movies"]![0]["title"] as String
-            println(title)
             let synopsis = jsonData!["movies"]![0]["synopsis"] as String
-            println(synopsis)
         })
         // Do any additional setup after loading the view, typically from a nib.
     }
