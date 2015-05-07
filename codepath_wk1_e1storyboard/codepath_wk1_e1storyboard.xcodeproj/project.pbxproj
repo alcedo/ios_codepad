@@ -14,6 +14,7 @@
 		1C8FE9401AFB0153005BFC96 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8FE93E1AFB0153005BFC96 /* LaunchScreen.xib */; };
 		1C8FE94C1AFB0153005BFC96 /* codepath_wk1_e1storyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8FE94B1AFB0153005BFC96 /* codepath_wk1_e1storyboardTests.swift */; };
 		1C8FE9561AFB05A1005BFC96 /* PrototypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8FE9551AFB05A1005BFC96 /* PrototypeTableViewCell.swift */; };
+		1C8FE95B1AFB11DC005BFC96 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8FE95A1AFB11DC005BFC96 /* PhotoDetailViewController.swift */; };
 		6E1CBE083C72156080242A29 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FD7E8915C2ED731110D037 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		1C8FE94B1AFB0153005BFC96 /* codepath_wk1_e1storyboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codepath_wk1_e1storyboardTests.swift; sourceTree = "<group>"; };
 		1C8FE9551AFB05A1005BFC96 /* PrototypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrototypeTableViewCell.swift; sourceTree = "<group>"; };
 		1C8FE9571AFB0D17005BFC96 /* codepath_wk1_e1storyboard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "codepath_wk1_e1storyboard-Bridging-Header.h"; sourceTree = "<group>"; };
+		1C8FE95A1AFB11DC005BFC96 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		631A5323C8814F8506B2D9EE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D3FD7E8915C2ED731110D037 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF12FA429EABF038AB0D3C25 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				1C8FE9371AFB0153005BFC96 /* PhotosViewController.swift */,
 				1C8FE9551AFB05A1005BFC96 /* PrototypeTableViewCell.swift */,
 				1C8FE9391AFB0153005BFC96 /* Main.storyboard */,
+				1C8FE95A1AFB11DC005BFC96 /* PhotoDetailViewController.swift */,
 				1C8FE93C1AFB0153005BFC96 /* Images.xcassets */,
 				1C8FE93E1AFB0153005BFC96 /* LaunchScreen.xib */,
 				1C8FE9331AFB0153005BFC96 /* Supporting Files */,
@@ -278,6 +281,7 @@
 			files = (
 				1C8FE9381AFB0153005BFC96 /* PhotosViewController.swift in Sources */,
 				1C8FE9361AFB0153005BFC96 /* AppDelegate.swift in Sources */,
+				1C8FE95B1AFB11DC005BFC96 /* PhotoDetailViewController.swift in Sources */,
 				1C8FE9561AFB05A1005BFC96 /* PrototypeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

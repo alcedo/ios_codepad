@@ -53,5 +53,27 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.photos.count
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+    }
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        var vc = segue.destinationViewController as PhotoDetailViewController
+        var indexPath = tableView.indexPathForCell(sender as UITableViewCell)
+        
+        if let indexPath = indexPath {
+            if let images = self.photos[indexPath.row]["images"] as? NSDictionary {
+                let url = images["low_resolution"]!["url"] as String
+                vc.detailedPhotoImageUrl = NSURL(string: url)
+            }
+        }
+        
+        
+    }
 }
 
