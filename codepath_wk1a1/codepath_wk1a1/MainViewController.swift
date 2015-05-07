@@ -142,7 +142,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var vc = MovieDetailsViewController()
         vc.movieSynopsisText = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
-        vc.movieImageUrl = self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row)
+        vc.movieImageUrl = self.boxOfficeModel.getBoxOfficeHighResForIndex(indexPath.row)
         self.navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

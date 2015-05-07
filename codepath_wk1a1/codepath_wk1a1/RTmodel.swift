@@ -62,6 +62,11 @@ class RTmodel: NSObject {
         return NSURL(string: posterUrl)!
     }
     
+    func getBoxOfficeHighResForIndex(idx: Int) -> NSURL {
+        // return the same thing for now, since the API doesnt have high res images.
+        return self.getBoxOfficeThumbUrlForIndex(idx)
+    }
+    
     
     func getTopDvds(callBack: (AnyObject?)-> Void) {
 //        let url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=16&page=1&country=us&apikey=f2fk8pundhpxf77fscxvkupy"
