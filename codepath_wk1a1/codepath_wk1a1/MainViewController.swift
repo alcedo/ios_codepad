@@ -25,12 +25,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.title = "Rotten Tomatoes"
         self.view.backgroundColor = UIColor.whiteColor()
         
+        // Load box office List
         self.boxOfficeModel.getBoxOffice({ (data) -> Void in
             SVProgressHUD.dismiss()
             self.tableView!.reloadData()
+            self.hideErrorHud()
+        }, {(error) -> Void in
+            self.showErrorHud()
         })
         
         self.setupView()
+        self.hideErrorHud()
     }
     
     func setupView() {
@@ -75,11 +80,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func hideErrorHud() {
-        
+        // we can refer to self.errorHud too, but for learning sake, im doing this
+        let hud = self.view.viewWithTag(self.ERROR_HUD_TAG)
+        if let hud = hud {
+            hud.hidden = true
+        }
     }
     
     func showErrorHud() {
-        
+        if let hud = self.errorHud {
+            hud.hidden = false
+        }
     }
     
     override func didReceiveMemoryWarning() {

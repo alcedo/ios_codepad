@@ -13,7 +13,7 @@ class RTmodel: NSObject {
 
     var boxOfficeData: NSDictionary?
     
-    func getBoxOffice(callBack: (AnyObject?)-> Void) {
+    func getBoxOffice(callBack: (AnyObject?)-> Void, errorCallBack: (AnyObject?) -> Void) {
 //        let url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?limit=3&country=us&apikey=f2fk8pundhpxf77fscxvkupy"
         
         // use this so as to not spam api server
@@ -30,7 +30,8 @@ class RTmodel: NSObject {
             callBack(dataObject)
         }, failure: {
             (operation, error)-> Void in
-            println(error)
+            println("Error in RTmodel, getBoxoffice: \(error)")
+            errorCallBack(error)
         })
         
         NSOperationQueue.mainQueue().addOperation(op)
