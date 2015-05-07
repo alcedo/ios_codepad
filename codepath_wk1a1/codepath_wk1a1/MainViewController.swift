@@ -16,6 +16,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var boxOfficeModel = RTmodel()
     var errorHud: UIView?
     let ERROR_HUD_TAG = 1
+    var refreshControl: UIRefreshControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             tv.dataSource = self
         }
         
+        // Refresh control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "userDidRefreshTableView:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView!.addSubview(refreshControl)
+        
         // Add network error messsages
         let errorHud = UIView(frame: CGRectMake(0, 0, 0, 0))
         errorHud.tag = self.ERROR_HUD_TAG
@@ -93,6 +99,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func userDidRefreshTableView(refresh: UIRefreshControl) {
+        self.boxOfficeModel.getBoxOffice({ (data) -> Void in
+            self.tableView!.reloadData()
+            refresh.endRefreshing()
+            self.hideErrorHud()
+        }, {(error) -> Void in
+            self.showErrorHud()
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -123,11 +139,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return UITableViewCell() // return empty cell if all else fails
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = MovieDetailsViewController()
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var vc = MovieDetailsViewController()
         vc.movieSynopsisText = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
         vc.movieImageUrl = self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row)
         self.navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
 

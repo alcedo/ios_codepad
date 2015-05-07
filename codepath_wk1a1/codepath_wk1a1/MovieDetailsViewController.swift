@@ -14,7 +14,7 @@ class MovieDetailsViewController: UIViewController {
     var movieSynopsisText: String?
     
     var image: UIImageView?
-    var synopsis: UILabel?
+    var synopsis: UITextView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func setUpView() {
+        self.view.backgroundColor = UIColor.whiteColor()
         // set up movie IMG
         if let url = self.movieImageUrl {
             self.image = UIImageView()
@@ -32,24 +33,32 @@ class MovieDetailsViewController: UIViewController {
         if let img = self.image {
             self.view.addSubview(self.image!)
             img.snp_makeConstraints{ (make) -> Void in
-                make.width.equalTo(300)
+                make.width.equalTo(self.view.snp_width)
                 make.height.equalTo(300)
-                make.top.equalTo(self.view.snp_top).offset(30)
+                if let nvc = self.navigationController {
+                    let navigationBarHeight: CGFloat = nvc.navigationBar.frame.height
+                    make.top.equalTo(self.view.snp_top).offset(navigationBarHeight)
+                }
                 return
             }
         }
         
         // Make movie synopsis caption text
-        self.synopsis = UILabel()
+        self.synopsis = UITextView()
         if let synopsis = self.synopsis {
             self.view.addSubview(synopsis)
             synopsis.text = self.movieSynopsisText
-            synopsis.sizeToFit()
+            synopsis.font = UIFont(name: "Arial", size: 28)
+            
             synopsis.snp_makeConstraints{ (make) -> Void in
                 make.top.equalTo(self.image!.snp_bottom).offset(20)
+                make.width.equalTo(self.view.snp_width)
+                make.bottom.equalTo(self.view.snp_bottom)
                 return
             }
         }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
