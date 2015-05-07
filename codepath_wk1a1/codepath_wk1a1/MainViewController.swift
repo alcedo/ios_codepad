@@ -14,6 +14,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     var tableView: UITableView?
     var boxOfficeModel = RTmodel()
+    var errorHud: UIView?
+    let ERROR_HUD_TAG = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setupView() {
+        // Add table view
         self.tableView = UITableView(frame: CGRectMake(0, 0, 100, 100), style: .Plain)
         if let tv = self.tableView {
             self.view.addSubview(tv)
@@ -46,6 +49,37 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             tv.delegate = self
             tv.dataSource = self
         }
+        
+        // Add network error messsages
+        let errorHud = UIView(frame: CGRectMake(0, 0, 0, 0))
+        errorHud.tag = self.ERROR_HUD_TAG
+        self.view.addSubview(errorHud)
+        self.errorHud = errorHud
+        errorHud.backgroundColor = UIColor.redColor()
+        errorHud.snp_makeConstraints { (make) -> Void in
+            if let nvc = self.navigationController {
+                let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
+                let errorHudHeight = 20
+                make.top.equalTo(self.view.snp_top).offset(navigationBarHeight + 20)
+                make.width.equalTo(self.view.snp_width)
+                make.height.equalTo(errorHudHeight)
+            }
+            return
+        }
+        
+        // errorHud label
+        let errorHudLabel = UILabel()
+        errorHudLabel.text = "Network Error, please try again"
+        errorHudLabel.sizeToFit()
+        errorHud.addSubview(errorHudLabel)
+    }
+    
+    func hideErrorHud() {
+        
+    }
+    
+    func showErrorHud() {
+        
     }
     
     override func didReceiveMemoryWarning() {
