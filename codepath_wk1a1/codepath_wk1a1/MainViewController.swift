@@ -122,6 +122,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return UITableViewCell() // return empty cell if all else fails
     }
-
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let vc = MovieDetailsViewController()
+        vc.movieSynopsisText = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
+        vc.movieImageUrl = self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
