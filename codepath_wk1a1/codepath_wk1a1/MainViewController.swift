@@ -10,14 +10,20 @@ import UIKit
 import Snap
 import SVProgressHUD
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
-    var tableView: UITableView?
     var boxOfficeModel = RTmodel()
+    
+    var tableView: UITableView?
+    var collectionView: UICollectionView?
+    
     var errorHud: UIView?
-    let ERROR_HUD_TAG = 1
     var refreshControl: UIRefreshControl?
     var layoutControl: UISegmentedControl?
+    
+    let ERROR_HUD_TAG = 1
+    let TABLE_VIEW_TAG = 2
+    let COLLECTION_VIEW_TAG = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +37,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.boxOfficeModel.getBoxOffice({ (data) -> Void in
             SVProgressHUD.dismiss()
             self.tableView!.reloadData()
+            self.collectionView!.reloadData()
             self.hideErrorHud()
         }, {(error) -> Void in
             self.showErrorHud()
@@ -54,13 +61,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 make.width.equalTo(160)
                 return
             }
-            
             sc.addTarget(self, action: "didSelectLayoutChange:", forControlEvents: .ValueChanged);
+            sc.selectedSegmentIndex = 0
         }
         
         // Add table view
         self.tableView = UITableView(frame: CGRectMake(0, 0, 100, 100), style: .Plain)
         if let tv = self.tableView {
+            tv.hidden = false
+            tv.tag = TABLE_VIEW_TAG
             self.view.addSubview(tv)
             
             tv.snp_makeConstraints { (make) -> Void in
@@ -72,6 +81,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             tv.delegate = self
             tv.dataSource = self
+        }
+        
+        
+        // Add collection view 
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        self.collectionView = UICollectionView(frame: self.view.frame,
+            collectionViewLayout: collectionViewFlowLayout)
+        
+        if let cv = self.collectionView {
+            cv.tag = COLLECTION_VIEW_TAG
+            cv.backgroundColor = UIColor.whiteColor()
+            cv.hidden = true
+            cv.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionViewCell")
+            self.view.addSubview(cv)
+            
+            cv.snp_makeConstraints { (make) -> Void in
+                make.top.equalTo(self.layoutControl!.snp_bottom).offset(5)
+                make.height.equalTo(self.view.snp_height)
+                make.width.equalTo(self.view.snp_width)
+                return
+            }
+            
+            cv.dataSource = self
+            cv.delegate = self
         }
         
         // Refresh control
@@ -135,10 +168,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let layout = sender.titleForSegmentAtIndex(selected)
             
             if layout == "Table" {
+                self.tableView!.hidden = false
+                self.collectionView!.hidden = true
             }
             
             if layout == "Grid" {
-                
+                self.tableView!.hidden = true
+                self.collectionView!.hidden = false
             }
         }
     }
@@ -179,6 +215,44 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         vc.movieImageUrl = self.boxOfficeModel.getBoxOfficeHighResForIndex(indexPath.row)
         self.navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    // MARK: Collection View delegate and data source
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        var cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as UICollectionViewCell;
+        
+        let data = NSData(contentsOfURL: self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row))
+        let image = UIImageView(image: UIImage(data:data!))
+        image.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(150)
+            make.height.equalTo(200)
+            return
+        }
+        cell.contentView.addSubview(image)
+        cell.backgroundColor = UIColor.greenColor()
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        var vc = MovieDetailsViewController()
+        vc.movieSynopsisText = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
+        vc.movieImageUrl = self.boxOfficeModel.getBoxOfficeHighResForIndex(indexPath.row)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.boxOfficeModel.getBoxOfficeDataCount()
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    {
+        return CGSizeMake(150, 200);
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
+    {
+        return UIEdgeInsetsMake(10, 10, 10, 10)
+        
     }
 }
 
