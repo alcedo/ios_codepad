@@ -21,6 +21,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var refreshControl: UIRefreshControl?
     var layoutControl: UISegmentedControl?
     
+    var searchController: UISearchDisplayController!
+    
     let ERROR_HUD_TAG = 1
     let TABLE_VIEW_TAG = 2
     let COLLECTION_VIEW_TAG = 3
@@ -83,6 +85,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             tv.dataSource = self
         }
         
+        
+        // add a search bar
+        let searchBar = UISearchBar(frame: CGRectMake(0, 0, 320, 44))
+        searchBar.delegate = self
+        self.tableView?.tableHeaderView = searchBar
+        self.searchController = UISearchDisplayController(searchBar: searchBar, contentsController: self)
+        self.searchController.searchResultsDataSource = self
+        self.searchController.searchResultsDelegate = self
+        self.searchController.searchResultsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "photo_cell_identifier")
         
         // Add collection view 
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -192,6 +203,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        if tableView == self.tableView {
+//            println(tableView)
+//        }
+//        if tableView != self.tableView {
+//            println(tableView)
+//        }
         let cellIdentifier = "photo_cell_identifier"
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as UITableViewCell?
         if (cell == nil) {
@@ -251,8 +268,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets
     {
-        return UIEdgeInsetsMake(10, 10, 10, 10)
+        return UIEdgeInsetsMake(10, 10, 150, 10)
         
     }
 }
 
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar!, textDidChange searchText: String!) {
+        // this is laggy as hell!
+        println("test changed in search bar \(searchText)")
+    }
+}
