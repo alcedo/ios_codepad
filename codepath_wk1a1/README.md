@@ -32,7 +32,7 @@ Optional
 [x] Customize the navigation bar.
 
 Walkthrough
-Video Walkthrough
+![video walkthrough](http://cl.ly/image/2Y30303V142h/walkthrough.gif)
 
 Credits
 Rotten Tomatoes API
