@@ -169,6 +169,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             refresh.endRefreshing()
             self.hideErrorHud()
         }, {(error) -> Void in
+            refresh.endRefreshing()
             self.showErrorHud()
         })
     }
@@ -217,10 +218,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if let cell = cell {
             let data = NSData(contentsOfURL: self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row))
-            cell.imageView?.image = UIImage(data: data!)
-            cell.textLabel?.text = self.boxOfficeModel.getBoxOfficeMovieTitleForIndex(indexPath.row)
-            cell.detailTextLabel?.text = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
-            return cell
+            if let data = data {
+                cell.imageView?.image = UIImage(data: data)
+                cell.textLabel?.text = self.boxOfficeModel.getBoxOfficeMovieTitleForIndex(indexPath.row)
+                cell.detailTextLabel?.text = self.boxOfficeModel.getBoxOfficeSynopsisForIndex(indexPath.row)
+                return cell
+            }
         }
         
         return UITableViewCell() // return empty cell if all else fails
