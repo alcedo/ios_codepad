@@ -18,12 +18,19 @@ Required
 Optional
 
 [ ] Add a tab bar for Box Office and DVD.
+
 [x] Implement segmented control to switch between list view and grid view.
+
 [x] Add a search bar. (it lags terribly, stuck at fixing the lagginess part) 
+
 [ ] All images fade in.
+
 [ ] For the large poster, load the low-res image first, switch to high-res when complete.
+
 [ ] Customize the highlight and selection effect of the cell.
+
 [x] Customize the navigation bar.
+
 Walkthrough
 Video Walkthrough
 
