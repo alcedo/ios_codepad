@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mvc = MainViewController()
         let navController = UINavigationController(rootViewController: mvc)
+        navController.navigationBar.barTintColor = UIColor(red: 0.204, green: 0.596, blue: 0.859, alpha: 1)
         self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
         
@@ -48,7 +49,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
