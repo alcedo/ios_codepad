@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var errorHud: UIView?
     let ERROR_HUD_TAG = 1
     var refreshControl: UIRefreshControl?
+    var layoutControl: UISegmentedControl?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +41,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setupView() {
+        // Segmented control
+        self.layoutControl = UISegmentedControl(items: ["Table", "Grid"])
+        if let sc = self.layoutControl {
+            self.view.addSubview(sc)
+            
+            sc.snp_makeConstraints{ (make) -> Void in
+                let navigationBarHeight: CGFloat = self.navigationController!.navigationBar.frame.height
+                make.top.equalTo(self.view.snp_top).offset(navigationBarHeight + 30)
+                make.centerX.equalTo(self.view.snp_centerX)
+                make.height.equalTo(30)
+                make.width.equalTo(160)
+                return
+            }
+            
+            sc.addTarget(self, action: "didSelectLayoutChange:", forControlEvents: .ValueChanged);
+        }
+        
         // Add table view
         self.tableView = UITableView(frame: CGRectMake(0, 0, 100, 100), style: .Plain)
         if let tv = self.tableView {
             self.view.addSubview(tv)
             
             tv.snp_makeConstraints { (make) -> Void in
-                make.top.equalTo(self.view.snp_top)
+                make.top.equalTo(self.layoutControl!.snp_bottom).offset(5)
                 make.height.equalTo(self.view.snp_height)
                 make.width.equalTo(self.view.snp_width)
                 return
@@ -83,6 +101,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         errorHudLabel.text = "Network Error, please try again"
         errorHudLabel.sizeToFit()
         errorHud.addSubview(errorHudLabel)
+        
+        
     }
     
     func hideErrorHud() {
@@ -107,6 +127,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }, {(error) -> Void in
             self.showErrorHud()
         })
+    }
+    
+    func didSelectLayoutChange(sender: UISegmentedControl) {
+        if sender == self.layoutControl {
+            let selected = sender.selectedSegmentIndex
+            let layout = sender.titleForSegmentAtIndex(selected)
+            
+            if layout == "Table" {
+            }
+            
+            if layout == "Grid" {
+                
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
