@@ -1,0 +1,3 @@
+[submodule "codepath/embedtest/SnapKit"]
+	path = codepath/embedtest/SnapKit
+	url = https://github.com/SnapKit/SnapKit.git
