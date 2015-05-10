@@ -24,7 +24,7 @@ class RTmodel: NSObject {
         let op = AFHTTPRequestOperation(request: request)
         op.responseSerializer = AFJSONResponseSerializer()
         // github response with a text/plain, so we have to inform AFNetworking that this is ok.
-        op.responseSerializer.acceptableContentTypes = NSSet(object: "text/plain")
+        op.responseSerializer.acceptableContentTypes = NSSet(object: "text/plain") as Set<NSObject>
         op.setCompletionBlockWithSuccess({ (AFHTTPRequestOperation, dataObject) -> Void in
             self.boxOfficeData = dataObject as? NSDictionary
             callBack(dataObject)
@@ -46,19 +46,19 @@ class RTmodel: NSObject {
     }
     
     func getBoxOfficeSynopsisForIndex(idx: Int) -> String {
-        let synopsis = self.boxOfficeData!["movies"]![idx]["synopsis"] as String
+        let synopsis = self.boxOfficeData!["movies"]![idx]["synopsis"] as! String
         return synopsis
         
     }
     
     func getBoxOfficeMovieTitleForIndex(idx: Int) -> String {
-        let title = self.boxOfficeData!["movies"]![idx]["title"] as String
+        let title = self.boxOfficeData!["movies"]![idx]["title"] as! String
         return title
     }
     
     func getBoxOfficeThumbUrlForIndex(idx: Int) -> NSURL {
         let posterJson = self.boxOfficeData!["movies"]![idx]["posters"] as? NSDictionary
-        let posterUrl = posterJson!["thumbnail"] as String
+        let posterUrl = posterJson!["thumbnail"] as! String
         return NSURL(string: posterUrl)!
     }
     

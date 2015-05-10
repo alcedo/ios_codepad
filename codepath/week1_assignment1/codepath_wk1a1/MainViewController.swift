@@ -41,7 +41,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView!.reloadData()
             self.collectionView!.reloadData()
             self.hideErrorHud()
-        }, {(error) -> Void in
+        }, errorCallBack: {(error) -> Void in
             self.showErrorHud()
         })
         
@@ -168,7 +168,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView!.reloadData()
             refresh.endRefreshing()
             self.hideErrorHud()
-        }, {(error) -> Void in
+        }, errorCallBack: {(error) -> Void in
             refresh.endRefreshing()
             self.showErrorHud()
         })
@@ -211,7 +211,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            println(tableView)
 //        }
         let cellIdentifier = "photo_cell_identifier"
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as UITableViewCell?
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! UITableViewCell?
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
         }
@@ -239,7 +239,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: Collection View delegate and data source
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as UICollectionViewCell;
+        var cell:UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionViewCell", forIndexPath: indexPath) as! UICollectionViewCell;
         
         let data = NSData(contentsOfURL: self.boxOfficeModel.getBoxOfficeThumbUrlForIndex(indexPath.row))
         let image = UIImageView(image: UIImage(data:data!))
