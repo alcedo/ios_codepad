@@ -15,10 +15,26 @@ class MainViewController: UIViewController {
         
         self.title = "Yelp"
         self.view.backgroundColor = UIColor.whiteColor()
-        let filterButton = UIBarButtonItem(title: "Filters", style: .Plain, target: self, action: "didSelectFilterButton:")
+//        UIImage *buttonImage = [UIImage imageNamed:@"back.png"];
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [button setImage:buttonImage forState:UIControlStateNormal];
+//        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+//        [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+//        self.navigationItem.leftBarButtonItem = customBarItem;
+//        [customBarItem release];
+        
+        let filterButton = UIBarButtonItem(title: "Filters", style: UIBarButtonItemStyle.Done, target: self, action: "didSelectFilterButton:")
         filterButton.tintColor = UIColor.whiteColor()
         
         self.navigationItem.leftBarButtonItem = filterButton
+        let v =  UIView(frame: CGRectMake(0, 0, 30, 30))
+        v.backgroundColor = UIColor.whiteColor()
+        
+        let g = UITapGestureRecognizer(target: self, action: "didSelectFilterButton2:")
+        v.addGestureRecognizer(g)
+        self.navigationItem.titleView = v
         
         self.setupView()
     }
@@ -30,6 +46,12 @@ class MainViewController: UIViewController {
         println("selected")
         
     }
+    
+    func didSelectFilterButton2(button: AnyObject){
+        println("selected")
+        
+    }
+    
     func setupView() {
         
     }
