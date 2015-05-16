@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Parse
+import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +18,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // [Optional] Power your app with Local Datastore. For more info, go to
+        // https://parse.com/docs/ios_guide#localdatastore/iOS
+        Parse.enableLocalDatastore()
+        
+        // Initialize Parse.
+        Parse.setApplicationId("",
+            clientKey: "")
+        
+        // [Optional] Track statistics around application opens.
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        
+        let testObject = PFObject(className: "TestObject")
+        testObject["foo"] = "bar"
+        testObject["Q"] = "cute"
+        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            println("Object has been saved.")
+        }
+        
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timerFired:", userInfo: nil, repeats: true)
+        
+        
+        var user = PFUser()
+        user.username = "myUsername"
+        user.password = "myPassword"
+        user.email = "email@example.com"
+        // other fields can be set just like with PFObject
+        user["phone"] = "415-392-0202"
+        
+        user.signUpInBackgroundWithBlock({
+            (succeeded: Bool, error: NSError?) -> Void in
+            if let error = error {
+                let errorString = error.userInfo?["error"] as? NSString
+                // Show the errorString somewhere and let the user try again.
+            } else {
+                // Hooray! Let them use the app now.
+                println("yay signed up")
+            }
+        })
+        
+    
+//        query.findObjectsInBackgroundWithBlock({
+//             (objects: [AnyObject]?, error: NSError?) -> Void in
+//            
+//            
+//            // The find succeeded.
+//            println("Successfully retrieved \(objects!.count) scores.")
+//            // Do something with the found objects
+//            if let objects = objects as? [PFObject] {
+//                for object in objects {
+//                    println(object.objectId)
+//                }
+//            }
+//            
+//        })
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let mvc = UIViewController()
+        let navController = UINavigationController(rootViewController: mvc)
+        navController.navigationBar.barTintColor = UIColor(hex: "#E3001C")
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
+        
+        
         return true
+    }
+    
+    
+    func timerFired(sender: NSTimer) {
+        var query = PFQuery(className:"TestObject")
+        query.getObjectInBackgroundWithId("frWXqYGCYv", block: { (obj: PFObject?, error: NSError?) -> Void in
+            println(obj)
+        })
     }
 
     func applicationWillResignActive(application: UIApplication) {
