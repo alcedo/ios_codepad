@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let navController = UINavigationController(rootViewController: PhotoMapViewController())
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window.rootViewController = navController
+        self.window = window;
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
