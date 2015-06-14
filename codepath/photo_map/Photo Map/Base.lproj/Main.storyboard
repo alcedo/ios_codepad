@@ -8,7 +8,7 @@
         <!--Add Location-->
         <scene sceneID="iO8-f3-thv">
             <objects>
-                <viewController id="eZf-Nb-6PU" customClass="LocationsViewController" customModule="Photo_Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addLocationVC" id="eZf-Nb-6PU" customClass="LocationsViewController" customModule="Photo_Map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vio-CG-J2y"/>
                         <viewControllerLayoutGuide type="bottom" id="nWs-YP-WbV"/>
@@ -68,7 +68,6 @@
                                             <outlet property="addressLabel" destination="HUV-fK-4vy" id="y7U-Dk-vbn"/>
                                             <outlet property="categoryImageView" destination="rf7-oN-H0f" id="pMV-wp-j6T"/>
                                             <outlet property="nameLabel" destination="ubb-Dd-TaA" id="n0x-NA-9Xk"/>
-                                            <segue destination="iK3-7U-EWi" kind="show" id="zlK-HZ-v4f"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

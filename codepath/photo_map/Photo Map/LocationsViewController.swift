@@ -13,6 +13,8 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var didSelectLocation: ((lat: NSNumber, long: NSNumber) -> ())?
+    
     var results: NSArray = []
     
     override func viewDidLoad() {
@@ -38,6 +40,17 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.location = results[indexPath.row] as! NSDictionary
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // This is the selected venue
+        var venue = results[indexPath.row] as! NSDictionary
+        var lat = venue.valueForKeyPath("location.lat") as! NSNumber
+        var lng = venue.valueForKeyPath("location.lng") as! NSNumber
+        
+        if let cb = self.didSelectLocation {
+            cb(lat: lat, long: lng)
+        }
     }
     
     func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {

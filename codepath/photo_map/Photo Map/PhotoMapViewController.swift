@@ -65,6 +65,26 @@ class PhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocationMan
         didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
             var originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
             var editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewControllerWithIdentifier("addLocationVC") as! LocationsViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            vc.didSelectLocation = {[unowned self] (lat, long) -> () in
+                
+                let annotate = MKPointAnnotation()
+                let latCoord = lat as! CLLocationDegrees
+                let longCoord = long as! CLLocationDegrees
+                
+                annotate.coordinate = CLLocationCoordinate2DMake(latCoord, longCoord)
+                self.mapView.addAnnotation(annotate)
+                
+                self.navigationController?.popViewControllerAnimated(true)
+                
+                // Implement the mapView:viewForAnnotation delegate method to provide an annotation view for bonus stage.
+                
+            }
     }
     
 //    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
